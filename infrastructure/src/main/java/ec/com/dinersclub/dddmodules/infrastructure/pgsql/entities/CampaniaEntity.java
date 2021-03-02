@@ -103,21 +103,4 @@ public class CampaniaEntity extends PanacheEntityBase {
 		this.listRangoCampaniaEntity = listRangoCampaniaEntity;
 	}
 
-	
-/*
-	public static List<Campania> map(List<CampaniaEntity> campanias) {
-        List<Campania> list = new ArrayList<>();
-        if (campanias != null && !campanias.isEmpty()) {
-            for (CampaniaEntity campania : campanias) {
-                list.add(campania.toCampania());
-            }
-        }
-        return list;
-    }
-
-    public Campania toCampania() {
-        return new Campania(getId(),getName(),getFechaInicio(),getFechaFin(),getMontoTotal(),getRango1(),getRango2(),getRango3());
-    }
-*/
-	
 }

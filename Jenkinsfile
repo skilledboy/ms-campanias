@@ -361,7 +361,7 @@ spec:
                     sh "rm -rf infrastructure/src/main/resources/META-INF/microprofile-config.properties"
 
                     // Credentials
-                    withCredentials([usernamePassword(credentialsId: 'mponce-apiservice', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github-eduardo', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         sh label: "", 
                         script: """
                             #!/bin/bash
