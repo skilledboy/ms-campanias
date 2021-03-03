@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import ec.com.dinersclub.dddmodules.domain.model.Campania;
+import ec.com.dinersclub.dddmodules.domain.model.SuscribirCampania;
 import ec.com.dinersclub.dddmodules.domain.model.Tarjeta;
 
 public interface IRepository {
@@ -18,4 +19,5 @@ public interface IRepository {
     
     void createCampania(Campania campania);
 
+    void createSuscribirCampania(SuscribirCampania suscribirCampania);
 }

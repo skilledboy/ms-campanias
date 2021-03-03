@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ec.com.dinersclub.dddmodules.application.grpc";
+option java_outer_classname = "CampaniasProto";
+
+package grpc;
+
+service Campanias {
+    rpc verificarClienteCampania (CampaniasRequest) returns (CampaniasResponse) {}
+}
+
+message CampaniasRequest {
+    string idCliente = 1;
+}
+
+message CampaniasResponse {
+	string idCampania = 1;
+	string nombreCampania= 2;
+	string monto = 3;
+	string fechaInicio = 4;
+	string fechaFin = 5;
+	string estado = 6;
+    repeated Item items = 7;
+}
+
+message Item {
+	int32 idRangoCampania = 1;
+	string nombreRango = 2;
+	string valorPremio = 3;
+}

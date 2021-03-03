@@ -9,10 +9,16 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import ec.com.dinersclub.dddmodules.domain.model.Campania;
+import ec.com.dinersclub.dddmodules.domain.model.RangoCampania;
+import ec.com.dinersclub.dddmodules.domain.model.SuscribirCampania;
 import ec.com.dinersclub.dddmodules.domain.model.Tarjeta;
 import ec.com.dinersclub.dddmodules.domain.repository.IRepository;
 import ec.com.dinersclub.dddmodules.infrastructure.pgsql.entities.CampaniaEntity;
+import ec.com.dinersclub.dddmodules.infrastructure.pgsql.entities.RangoCampaniaEntity;
+import ec.com.dinersclub.dddmodules.infrastructure.pgsql.entities.SuscribirCampaniaEntity;
 import ec.com.dinersclub.dddmodules.infrastructure.pgsql.entities.TarjetaEntity;
+import ec.com.dinersclub.dddmodules.infrastructure.pgsql.repository.CampaniaRepository;
+import ec.com.dinersclub.dddmodules.infrastructure.pgsql.repository.RangoCampaniaRepository;
 import ec.com.dinersclub.dddmodules.infrastructure.pgsql.repository.TarjetaRepository;
 
 @ApplicationScoped
@@ -20,6 +26,12 @@ public class InfrastructureServiceImpl implements IRepository {
 	
 	@Inject
 	TarjetaRepository tarjetaRepository;
+	
+	@Inject
+	CampaniaRepository campaniaRepository;
+	
+	@Inject
+	RangoCampaniaRepository rangoCampaniaRepository;
 	
 	@Override
 	public List<Tarjeta> getTarjetas() {
@@ -60,6 +72,16 @@ public class InfrastructureServiceImpl implements IRepository {
 	@Transactional
 	public void createCampania(Campania campania) {
 		CampaniaEntity.persist(new CampaniaEntity(campania));
+		CampaniaEntity campaniaEntity = campaniaRepository.findById(campania.getId());
+		for (RangoCampania rangoCampania : campania.getListRangoCampania()) {
+			rangoCampaniaRepository.persist(new RangoCampaniaEntity(rangoCampania.getId(), rangoCampania.getNombre(), rangoCampania.getValor(), campaniaEntity));
+		}
+	}
+
+	@Override
+	@Transactional
+	public void createSuscribirCampania(SuscribirCampania suscribirCampania) {
+		SuscribirCampaniaEntity.persist(new SuscribirCampaniaEntity(suscribirCampania));
 	}
 
 }

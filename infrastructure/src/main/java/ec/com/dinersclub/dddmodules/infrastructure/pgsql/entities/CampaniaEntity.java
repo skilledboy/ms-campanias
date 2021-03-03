@@ -3,7 +3,6 @@ package ec.com.dinersclub.dddmodules.infrastructure.pgsql.entities;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -44,7 +43,6 @@ public class CampaniaEntity extends PanacheEntityBase {
 		this.fechaFin = campania.getFechaFin();
 		this.monto = campania.getMonto();
 		this.estado = campania.getEstado();
-		this.listRangoCampaniaEntity = campania.getListRangoCampania().stream().map(m -> new RangoCampaniaEntity(m.getId(), m.getNombre(), m.getValor())).collect(Collectors.toList());
 	}
 
 	public Integer getId() {
